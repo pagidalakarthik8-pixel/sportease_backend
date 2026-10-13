@@ -34,11 +34,13 @@ const upload = multer({ storage, limits: { fileSize: 4 * 1024 * 1024 } });
 
 const db = getDb();
 const app = express();
-app.use(cors({
+const corsOptions = {
   origin: "*",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Device-Key"]
-}));
+  allowedHeaders: ["Content-Type", "Authorization", "X-Device-Key"],
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "2mb" }));
 app.use("/uploads", express.static(UPLOADS));
 
