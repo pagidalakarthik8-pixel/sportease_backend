@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="740" fill="#ffffff"/>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">SportEase Smart Locker – Wiring Diagram</text>
+  <text x="500" y="56" text-anchor="middle" font-size="13" fill="#475569">ESP32 DevKit + RC522 RFID reader + relay-driven latch (prototype, not yet bench-tested)</text>
+
+  <!-- zone labels -->
+  <text x="135" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">RFID READER (3.3 V ONLY)</text>
+  <text x="460" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">CONTROLLER</text>
+  <text x="825" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">FEEDBACK (3.3 V logic)</text>
+  <text x="825" y="326" text-anchor="middle" font-size="12" font-weight="700" fill="#7c3aed">RELAY MODULE (5 V)</text>
+  <text x="640" y="548" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">12 V LATCH CIRCUIT (isolated by the relay contacts)</text>
+
+  <!-- RC522 -->
+  <rect x="40" y="100" width="190" height="290" rx="10" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+  <text x="135" y="124" text-anchor="middle" font-size="15" font-weight="700" fill="#7c2d12">RC522</text>
+  <text x="135" y="142" text-anchor="middle" font-size="11" fill="#9a3412">13.56 MHz, SPI</text>
+  <g font-size="12" fill="#1e293b" text-anchor="end">
+    <text x="218" y="134">3.3V</text>
+    <text x="218" y="174">GND</text>
+    <text x="218" y="214">SDA (SS)</text>
+    <text x="218" y="254">SCK</text>
+    <text x="218" y="294">MOSI</text>
+    <text x="218" y="334">MISO</text>
+    <text x="218" y="374">RST</text>
+  </g>
+  <text x="58" y="410" font-size="11" fill="#64748b">IRQ: not connected</text>
+
+  <!-- ESP32 -->
+  <rect x="380" y="80" width="160" height="430" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="460" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">ESP32</text>
+  <text x="460" y="113" text-anchor="middle" font-size="11" fill="#1d4ed8">DevKit (WROOM-32)</text>
+  <g font-size="12" fill="#1e293b">
+    <text x="392" y="134">3V3</text>
+    <text x="392" y="174">GND</text>
+    <text x="392" y="214">GPIO5</text>
+    <text x="392" y="254">GPIO18</text>
+    <text x="392" y="294">GPIO23</text>
+    <text x="392" y="334">GPIO19</text>
+    <text x="392" y="374">GPIO22</text>
+  </g>
+  <g font-size="12" fill="#1e293b" text-anchor="end">
+    <text x="528" y="134">GPIO25</text>
+    <text x="528" y="174">GPIO27</text>
+    <text x="528" y="214">GPIO33</text>
+    <text x="528" y="254">GND</text>
+    <text x="528" y="374">VIN (5V)</text>
+    <text x="528" y="414">GND</text>
+    <text x="528" y="454">GPIO26</text>
+  </g>
+  <text x="460" y="492" text-anchor="middle" font-size="11" fill="#475569">Powered by USB (5 V)</text>
+
+  <!-- RC522 <-> ESP32 wires -->
+  <g stroke-width="3" stroke-linecap="round">
+    <line x1="230" y1="130" x2="380" y2="130" stroke="#dc2626"/>
+    <line x1="230" y1="170" x2="380" y2="170" stroke="#111827"/>
+    <line x1="230" y1="210" x2="380" y2="210" stroke="#f59e0b"/>
+    <line x1="230" y1="250" x2="380" y2="250" stroke="#2563eb"/>
+    <line x1="230" y1="290" x2="380" y2="290" stroke="#16a34a"/>
+    <line x1="230" y1="330" x2="380" y2="330" stroke="#7c3aed"/>
+    <line x1="230" y1="370" x2="380" y2="370" stroke="#6b7280"/>
+  </g>
+  <g fill="#1e293b" font-size="11" text-anchor="middle">
+    <text x="305" y="123">3.3 V (red)</text>
+    <text x="305" y="163">GND (black)</text>
+    <text x="305" y="203">SS (orange)</text>
+    <text x="305" y="243">SCK (blue)</text>
+    <text x="305" y="283">MOSI (green)</text>
+    <text x="305" y="323">MISO (purple)</text>
+    <text x="305" y="363">RST (grey)</text>
+  </g>
+
+  <!-- Feedback box -->
+  <rect x="720" y="100" width="230" height="190" rx="10" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+  <g font-size="12" fill="#1e293b">
+    <text x="732" y="134">Green LED + 220 Ω → GND</text>
+    <text x="732" y="174">Red LED + 220 Ω → GND</text>
+    <text x="732" y="214">Active buzzer (+) → GND (–)</text>
+    <text x="732" y="254">Common GND</text>
+  </g>
+  <g stroke-width="3" stroke-linecap="round">
+    <line x1="540" y1="130" x2="720" y2="130" stroke="#16a34a"/>
+    <line x1="540" y1="170" x2="720" y2="170" stroke="#dc2626"/>
+    <line x1="540" y1="210" x2="720" y2="210" stroke="#ca8a04"/>
+    <line x1="540" y1="250" x2="720" y2="250" stroke="#111827"/>
+  </g>
+  <g fill="#1e293b" font-size="11" text-anchor="middle">
+    <text x="630" y="123">green LED</text>
+    <text x="630" y="163">red LED</text>
+    <text x="630" y="203">buzzer</text>
+    <text x="630" y="243">GND</text>
+  </g>
+
+  <!-- Relay module -->
+  <rect x="720" y="340" width="230" height="140" rx="10" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="835" y="400" font-size="11" fill="#6d28d9">1-channel relay,</text>
+  <text x="835" y="415" font-size="11" fill="#6d28d9">opto-isolated</text>
+  <g font-size="12" fill="#1e293b">
+    <text x="732" y="374">VCC</text>
+    <text x="732" y="414">GND</text>
+    <text x="732" y="454">IN</text>
+  </g>
+  <text x="760" y="498" text-anchor="middle" font-size="12" fill="#1e293b">COM</text>
+  <text x="825" y="498" text-anchor="middle" font-size="12" fill="#1e293b">NO</text>
+  <text x="890" y="498" text-anchor="middle" font-size="12" fill="#94a3b8">NC (unused)</text>
+  <g stroke-width="3" stroke-linecap="round">
+    <line x1="540" y1="370" x2="720" y2="370" stroke="#dc2626"/>
+    <line x1="540" y1="410" x2="720" y2="410" stroke="#111827"/>
+    <line x1="540" y1="450" x2="720" y2="450" stroke="#0891b2"/>
+  </g>
+  <g fill="#1e293b" font-size="11" text-anchor="middle">
+    <text x="630" y="363">5 V (red)</text>
+    <text x="630" y="403">GND (black)</text>
+    <text x="630" y="443">signal (cyan)</text>
+  </g>
+
+  <!-- 12V side -->
+  <rect x="380" y="570" width="160" height="80" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="460" y="604" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">12 V adapter</text>
+  <text x="460" y="624" text-anchor="middle" font-size="11" fill="#991b1b">2 A DC supply</text>
+  <text x="440" y="565" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">+12V</text>
+  <text x="500" y="665" text-anchor="middle" font-size="12" font-weight="700" fill="#111827">–12V</text>
+
+  <rect x="720" y="570" width="230" height="80" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="835" y="612" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">12 V solenoid lock</text>
+  <text x="835" y="632" text-anchor="middle" font-size="11" fill="#991b1b">fail-secure + 1N4007 across coil</text>
+  <text x="825" y="565" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">+</text>
+  <text x="880" y="665" text-anchor="middle" font-size="12" font-weight="700" fill="#111827">–</text>
+
+  <g stroke-width="3" stroke-linecap="round" fill="none">
+    <!-- +12V -> relay COM -->
+    <polyline points="440,570 440,530 760,530 760,480" stroke="#dc2626"/>
+    <!-- relay NO -> solenoid + -->
+    <line x1="825" y1="480" x2="825" y2="570" stroke="#dc2626"/>
+    <!-- solenoid - -> -12V -->
+    <polyline points="880,650 880,692 500,692 500,650" stroke="#111827"/>
+  </g>
+  <g fill="#1e293b" font-size="11">
+    <text x="600" y="523" text-anchor="middle">+12 V to COM</text>
+    <text x="835" y="530">NO to coil +</text>
+    <text x="690" y="686" text-anchor="middle">coil – back to –12 V</text>
+  </g>
+
+  <!-- notes -->
+  <rect x="40" y="440" width="300" height="250" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="54" y="464" font-size="13" font-weight="700" fill="#92400e">Safety notes</text>
+  <g font-size="11.5" fill="#78350f">
+    <text x="54" y="488">• RC522 runs on 3.3 V. 5 V will damage it.</text>
+    <text x="54" y="508">• Power the solenoid from the 12 V adapter,</text>
+    <text x="54" y="523">  never from the ESP32 pins.</text>
+    <text x="54" y="543">• 1N4007 diode across the coil: stripe (cathode)</text>
+    <text x="54" y="558">  to +12 V, other end to the – side.</text>
+    <text x="54" y="578">• Use a fail-secure lock: locked when unpowered,</text>
+    <text x="54" y="593">  opens only while the relay is ON.</text>
+    <text x="54" y="613">• 12 V circuit and ESP32 share no wires: the</text>
+    <text x="54" y="628">  relay contacts keep them separate.</text>
+    <text x="54" y="648">• If relay clicks but does not follow the ESP32,</text>
+    <text x="54" y="663">  use a relay board that accepts 3.3 V logic.</text>
+  </g>
+</svg>

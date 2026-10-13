@@ -1,0 +1,10 @@
+node_modules
+data/*.db
+data/*.db-wal
+data/*.db-shm
+uploads/*
+!uploads/.gitkeep
+.env
+.env.local
+.DS_Store
+.vscode

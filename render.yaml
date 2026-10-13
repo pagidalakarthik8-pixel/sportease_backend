@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: sportease-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.12.0
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DEVICE_KEY
+        generateValue: true
